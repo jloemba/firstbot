@@ -1,4 +1,6 @@
-Notions à comprendre : BOTBUILDER,SERVICE WEB ,CHATCONNECTOR , UNIVERSALBOT, UNITE DE STOCKAGE , PROMPT  
+### Cours - Réalisation d'un ChatBot
+
+Notions à comprendre : BOTBUILDER, SERVICE WEB, CHATCONNECTOR, UNIVERSALBOT, UNITE DE STOCKAGE, PROMPT , STATE
 
 #### 1) Appeler le module **BOTBUILDER** qui permet de créer le bot et de gérer les interactions avec le bot depuis le service web(voir suite).  
   Appeler le module **SERVICE WEB** via *restify*
