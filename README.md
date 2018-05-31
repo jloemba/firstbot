@@ -21,7 +21,7 @@ const port = process.env.PORT || 3978;
 server.listen(port, function(){console.log('Serveur sur écoute du port ${port} du serveur ${server.name}');});
 ````
 
-#### 4) Créer une instance d'un **CHATCONNECTOR** depuis le module BotBuilder.  
+#### 3) Créer une instance d'un **CHATCONNECTOR** depuis le module BotBuilder.  
 Le ChatConnector connecte le bot au serveur afin de "communiquer" avec lui.
 ````
 var connector = new builder.ChatConnector({
@@ -30,13 +30,13 @@ var connector = new builder.ChatConnector({
 });
 ````
 
-#### 5) Soumettre l'instance du BotBuilder à notre serveur rest(service web) via une *requête post*.  
+#### 4) Soumettre l'instance du BotBuilder à notre serveur rest(service web) via une *requête post*.  
 On lui dit que le connecteur écoutera les évènements à cette requête.
 ````
 server.post("/api/messages", connector.listen());
 ````
 
-##### 6) Instancier une **UNITE DE STOCKAGE** depuis le BotBuilder
+##### 5) Instancier une **UNITE DE STOCKAGE** depuis le BotBuilder
 La conversation avec le bot nécessitera une persistance de certaines infos pour le tracking de cette dernière.  
 ````
 var inMemoryStorage = new builder.MemoryBotStorage();
@@ -47,7 +47,7 @@ Ces infos sont récupérés depuis des **STATES**
 - ceux de la conversation via *conversationData*  
 - ceux des dialogues via *dialogData*  
 
-#### 7) Créer une instance d'un **UNIVERSALBOT**
+#### 6) Créer une instance d'un **UNIVERSALBOT**
   -  Y associer le connector , l'unité de stockage et le tableau de fonctions(voir plus loin)
   - On appelle le root (premier dialogue) avec beginDialog(nom du dialogue) .
 
@@ -62,7 +62,7 @@ var bot = new builder.UniversalBot(connector, [
 C'est l'objet qui modalise une conversation. Cette conversation empilera un ou plusieurs dialogue. On parlera de **PILE DE DIALOGUE** qui est visible sur le client. Par défaut , la pile de dialogue est vide  . Si l'utilisateur envoie un message, le premier dialogue lui sera envoyé.
 
 
-#### 8) Créer un dialogue avec la méthode dialog(nom du dialogue,tableau de fonction) de l'instance UniversalBot prenant 2 paramètres.
+#### 7) Créer un dialogue avec la méthode dialog(nom du dialogue,tableau de fonction) de l'instance UniversalBot prenant 2 paramètres.
 
   - Appeler un **PROMPT** dans une fonction pour afficher au client via la méthode *text()*.
 
@@ -76,5 +76,11 @@ bot.dialog("dialog1", [
     }
 ]);
 ````
+Le dialogue est un tableau où chaque fonction contient le message envoyé au client ou reçu par dernier.
+Une fonction aura en paramètre une *session* et un *result*.  
+
+Les messages envoyé par le bot : *session.send('')*  
+Les messages avec une réponse attendu de la part de l'utilisateur : *builder.Prompt.text(session,'')* Ou *builder.Prompt.choice()*  
+Les réponses récupéré de l'utiilisateur :  *result.response)*  
 
 (A mettre à jour)
