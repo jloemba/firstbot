@@ -76,11 +76,13 @@ bot.dialog("dialog1", [
     }
 ]);
 ````
-Le dialogue est un tableau où chaque fonction contient le message envoyé au client ou reçu par dernier.
+Le dialogue est un tableau où chaque fonction contient le message envoyé au client ou reçu par ce dernier.
 Une fonction aura en paramètre une *session* et un *result*.  
 
 Les messages envoyé par le bot : *session.send('')*  
 Les messages avec une réponse attendu de la part de l'utilisateur : *builder.Prompt.text(session,'')* Ou *builder.Prompt.choice()*  
-Les réponses récupéré de l'utiilisateur :  *result.response)*  
+Les réponses récupéré de l'utiilisateur :  
+*result.response*  
+*session.endDialogWithResult(result)*
 
 (A mettre à jour)
